@@ -53,7 +53,7 @@ const Header = (props) => {
           {userData.name}
         </h2>
         {/* bell icon */}
-        <Link to="/notifications">
+        <Link to="/">
           {" "}
           <img src={bellicon} alt="" class="h-6 px-4" />{" "}
         </Link>

@@ -1,8 +1,8 @@
-import "../../index.css";
-import Header from "../../components/header";
-import Sidebar from "../../components/sidebar/sidebar";
+import "../index.css";
+import Header from "../components/header";
+import Sidebar from "../components/sidebar/sidebar";
 
-import MesCoursComponent from "../../components/MesCoursComponent";
+import MesCoursComponent from "../components/MesCoursComponent";
 
 const MesCours = () => {
   return (
