@@ -4,7 +4,7 @@
 
 ## Accueil
 
-  <img alt="accueil" src="./src/assets/capture d ecran app/accueil.png" />
+  <img alt="accueil" src="./src/assets/capture d ecran d ecran app/accueil.png" />
 
 ## Inscription
 
