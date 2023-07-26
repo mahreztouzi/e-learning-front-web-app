@@ -1,10 +1,9 @@
-import { connect, useSelector } from "react-redux";
 import { BASE_API_URL } from "./constant";
 import axios from "axios";
 
 export const addCours = (formData, token) => {
   return axios
-    .post(`${BASE_API_URL}/cours/uploads`, formData, {
+    .post(`${BASE_API_URL}/cours`, formData, {
       headers: {
         "Content-Type":
           "multipart/form-data; boundary=----WebKitFormBoundary<boundary_value>",

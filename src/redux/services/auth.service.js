@@ -1,9 +1,6 @@
 import Axios from "axios";
 import { BASE_API_URL } from "./constant";
-// const header = {
-//   "Content-Type":
-//     "application/x-www-form-urlencoded; charset=UTF-8;application/json",
-// };
+
 const api = Axios.create({
   baseURL: BASE_API_URL,
 });
@@ -22,25 +19,11 @@ api.interceptors.request.use((config) => {
 });
 
 class AuthService {
-  // async login(data) {
-  //   try {
-  //     const response = await api.post(`${BASE_API_URL}/enseignant/login`, data);
-  //     console.log("debut");
-  //     console.log(response);
-  //     console.log("fin response");
-  //     console.log(response.data);
-  //     console.log("fin user");
-  //     return response.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //     throw error;
-  //   }
-  // }
   async login(data) {
     try {
       // Tentative d'authentification en tant qu'enseignant
       const enseignantResponse = await api.post(
-        `${BASE_API_URL}/enseignant/login`,
+        `${BASE_API_URL}/enseignant`,
         data
       );
       console.log(data);
@@ -51,7 +34,7 @@ class AuthService {
       try {
         // Tentative d'authentification en tant qu'apprenant
         const apprenantResponse = await api.post(
-          `${BASE_API_URL}/apprenant/login`,
+          `${BASE_API_URL}/apprenant`,
           data
         );
         console.log(data);
@@ -65,12 +48,13 @@ class AuthService {
     }
   }
   async signup(data) {
+    console.log("data", data.email);
     try {
       const response = await api.post(
-        `${BASE_API_URL}/enseignant/sign-up`,
+        `${BASE_API_URL}/enseignant/${data.email}`,
         data
       );
-      console.log(data);
+
       console.log("signup");
       console.log(response);
       return response.data;
@@ -82,7 +66,7 @@ class AuthService {
   async signupStudent(data) {
     try {
       const response = await api.post(
-        `${BASE_API_URL}/apprenant/sign-up`,
+        `${BASE_API_URL}/apprenant/${data.email}`,
         data
       );
       console.log(data);
