@@ -1,10 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../index.css";
-import logo from "../assets/fulllogo.png";
 import edu from "../assets/edu.png";
-import illustration from "../assets/homepage.png";
-import heart from "../assets/heart.svg";
 import rocket from "../assets/rocket.svg";
 import { useSelector } from "react-redux";
 import Footer from "../components/footer";

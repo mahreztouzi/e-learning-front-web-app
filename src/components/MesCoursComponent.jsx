@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+
 import { PlusIcon } from "../icons/index";
 import { Link } from "react-router-dom";
 import { SearchIcon } from "../icons/index";
 import Loader from "./loader";
-import { store } from "../redux";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteCoursRequest,
   getAllCoursRequest,
-  getCoursRequest,
-  updateCours,
 } from "../redux/actions/cours.action";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom";
+
 import Swal from "sweetalert2";
 function getCurrentDate(separator = "-") {
   let newDate = new Date();
@@ -31,8 +28,6 @@ const MesCoursComponent = () => {
   const cours = useSelector((state) => state.cours.allCours);
   const userData = useSelector((state) => state.auth.user.user);
   const isLoading = useSelector((state) => state.cours.isLoading);
-  const error = useSelector((state) => state.cours.error);
-  const history = useHistory();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCours, setFilteredCours] = useState([]);
@@ -207,12 +202,7 @@ const MesCoursComponent = () => {
                       >
                         Titre
                       </th>
-                      {/* <th
-                        scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Description
-                      </th> */}
+
                       <th
                         scope="col"
                         className="px-3 w-1/6   py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -249,11 +239,6 @@ const MesCoursComponent = () => {
                                 {title}
                               </div>
                             </td>
-                            {/* <td className="px-3 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-500">
-                                {description}
-                              </div>
-                            </td> */}
                             <td className="px-3 py-4 whitespace-nowrap">
                               <Link
                                 to={`/coursDetails/${id}`}
@@ -439,14 +424,6 @@ const MesCoursComponent = () => {
                   >
                     Modifier ce cours
                   </button>
-                  {/* 
-                  <button
-                    className={`w-full flex disable cursor-pointer justify-center items-center bg-primary py-2 px-4 rounded border focus:outline-none`}
-                  >
-                    <div className="justify-self-center">
-                      <Loader color="#ffffff" />
-                    </div>
-                  </button> */}
 
                   <div className="flex mt-3 justify-center">
                     <button

@@ -3,8 +3,6 @@
 import { BASE_API_URL } from "./constant";
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 // Configuration de l'en-tête d'autorisation
 const axiosInstance = axios.create({
   baseURL: BASE_API_URL,

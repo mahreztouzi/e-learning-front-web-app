@@ -1,19 +1,14 @@
 import { put, call, takeLatest, all } from "redux-saga/effects";
-import { AuthService, UserService } from "../services";
+import { Login, Signup, SignupStudent } from "../services/auth.service";
 import { push } from "react-router-redux";
-import history from "../history";
-import { AuthTypes, UserTypes } from "../types";
+import { AuthTypes } from "../types";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
-import REDUX_PERSIST from "../config/reduxPersist.config";
 import { persistor } from "..";
-
-const authService = new AuthService();
-const userService = new UserService();
 
 export function* login(action) {
   try {
-    const res = yield call(authService.login, action.payload);
+    const res = yield call(Login, action.payload);
     if (res.error) {
       yield put({
         type: AuthTypes.LOGIN_ERROR,
@@ -44,7 +39,7 @@ export function* login(action) {
 
 export function* signup(action) {
   try {
-    const res = yield call(authService.signup, action.payload);
+    const res = yield call(Signup, action.payload);
     console.log("signup");
     console.log(res);
 
@@ -73,7 +68,7 @@ export function* signup(action) {
 }
 export function* signupStudent(action) {
   try {
-    const res = yield call(authService.signupStudent, action.payload);
+    const res = yield call(SignupStudent, action.payload);
     console.log("signup");
     console.log(res);
 
@@ -101,22 +96,6 @@ export function* signupStudent(action) {
   }
 }
 
-export function* update(action) {
-  try {
-    const res = yield call(userService.update, action.payload);
-    console.log(res);
-    if (res.error) {
-      yield put({
-        type: AuthTypes.LOGIN_ERROR,
-        error: res.message,
-      });
-    } else {
-      yield put({ type: AuthTypes.SIGNUP_SUCCESS, data: res });
-    }
-  } catch (error) {
-    yield put({ type: AuthTypes.LOGIN_ERROR, error });
-  }
-}
 export function* logout() {
   try {
     persistor
@@ -155,7 +134,6 @@ export default function* allSaga() {
     takeLatest(AuthTypes.LOGIN_REQUEST, login),
     takeLatest(AuthTypes.SIGNUP_REQUEST, signup),
     takeLatest(AuthTypes.SIGNUP_STUDENT_REQUEST, signupStudent),
-    takeLatest(UserTypes.USER_REQUEST, update),
     takeLatest(AuthTypes.LOGOUT_REQUEST, logout),
   ]);
 }

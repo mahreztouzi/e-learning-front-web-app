@@ -10,14 +10,12 @@ import {
 function MessagesComponent() {
   const [inputValue, setInputValue] = useState("");
   const [users, setUsers] = useState([]);
-  const [chatLog, setChatLog] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
   console.log("users", selectedUserId, inputValue);
   const [selectedUserName, setSelectedUserName] = useState(null);
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const scrollMessage = useRef(null);
 
   const user = useSelector((state) => state.auth.user.user);
   const messages = useSelector((state) => state.message.messages);
@@ -57,14 +55,7 @@ function MessagesComponent() {
   }, []);
   useEffect(() => {
     dispatch(getMessagesRequest(selectedUserId));
-    setChatLog(
-      messages.filter(
-        (message) =>
-          message.sender.id === user.userId ||
-          message.receiver.id === user.userId
-      )
-    );
-  }, [selectedUserId]);
+  }, [selectedUserId, dispatch]);
 
   const messagesContainerRef = useRef(null);
   useEffect(() => {
@@ -145,7 +136,6 @@ function MessagesComponent() {
           <div
             style={{
               marginTop: "40px",
-              height: "calc(44vw - 90px)",
               overflow: "auto",
               height: "20.7vw",
               paddingTop: "30px",
@@ -199,9 +189,8 @@ function MessagesComponent() {
           </div>
           <div
             style={{
-              height: "calc(44vw - 90px)",
               overflow: "auto",
-              height: "18vw",
+
               paddingTop: "30px",
               height: "18.7vw",
             }}
@@ -276,11 +265,6 @@ function MessagesComponent() {
                     </div>
                   </div>
                 ))}
-              {/* {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-gray-800 rounded-lg p-4 text-white max-w-sm"></div>
-                </div>
-              )} */}
             </div>
             <form
               onSubmit={handleSubmit}

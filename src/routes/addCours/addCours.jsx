@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../index.css";
 import Header from "../../components/header";
 import Sidebar from "../../components/sidebar/sidebar";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/loader";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";

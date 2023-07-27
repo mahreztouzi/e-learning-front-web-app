@@ -1,13 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../index.css";
-import {
-  DashboardIcon,
-  TruckIcon,
-  CoursSpecial,
-  BoxIcon,
-  FileTextIcon,
-} from "../../icons/index";
+import { DashboardIcon } from "../../icons/index";
 import messageIcon from "../../assets/messageIcon.png";
 import cours from "../../assets/cours.png";
 import allCours from "../../assets/allCours.png";
@@ -17,8 +11,7 @@ import { useSelector } from "react-redux";
 
 const Sidebar = ({ place }) => {
   const userData = useSelector((state) => state.auth.user.user);
-  console.log("userData", userData);
-  console.log(userData.role);
+
   return (
     <div className="w-1/5 shadow mt-12 fixed h-full overflow-y-auto text-base lg:text-sm pb-4 sticky?lg:h-(screen-18) lg:block hidden">
       <div className="inline-flex flex-col space-y-2 items-start justify-between flex-1 h-full px-6 pt-6 pb-12">
@@ -59,10 +52,6 @@ const Sidebar = ({ place }) => {
                 }
               >
                 <div className="inline-flex space-x-8 items-center justify-start">
-                  {/* <CoursSpecial
-                    className="h-5 "
-                    stroke={place === "2" ? "#5E48E8" : "#8C8CA2"}
-                  /> */}
                   <img
                     src={cours}
                     className="h-4"
@@ -119,10 +108,6 @@ const Sidebar = ({ place }) => {
               }
             >
               <div className="inline-flex space-x-8 items-center justify-start">
-                {/* <messageIcon
-                  className="h-5 "
-                  stroke={place === "4" ? "#5E48E8" : "#8C8CA2"}
-                /> */}
                 <img
                   src={messageIcon}
                   className="h-5 ml-1 "

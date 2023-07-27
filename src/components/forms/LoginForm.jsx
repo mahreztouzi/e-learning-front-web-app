@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { AuthActions } from "../../redux/actions";
 import Loader from "../loader";
@@ -98,13 +97,7 @@ const UserInfo = ({ dispatch, error, isLoading }) => {
           </div>
         ) : null}
       </div>
-      {/* <div>
-        <label className="text-sm font-medium mb-4">
-          <Link to="/forgot" className="w-full">
-            forgot password ?
-          </Link>
-        </label>
-      </div> */}
+
       {!isLoading ? (
         <div className="flex mt-6">
           <button

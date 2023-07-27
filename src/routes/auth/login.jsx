@@ -2,14 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/forms/LoginForm";
 import "../../index.css";
-import logo from "../../assets/fulllogo.png";
 import illustration from "../../assets/login.svg";
 import edu from "../../assets/edu.png";
 
-const Login = (props) => {
+const Login = () => {
   return (
     <div className="lg:flex-row flex flex-col-reverse">
-      {/* {props.isLoggedIn ? <Redirect to="/dash/" /> : null} */}
       <div className="lg:w-1/2  xl:max-w-screen-sm">
         <div className="h-screen flex">
           <div className="w-full max-w-md m-auto bg-white py-5 px-10">

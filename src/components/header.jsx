@@ -1,11 +1,11 @@
 import "../index.css";
-import React, { Component } from "react";
-import logo from "../assets/fulllogo.png";
+import React from "react";
+
 import edu from "../assets/edu.png";
 import logoSmall from "../assets/logosmall.png";
 import bellicon from "../assets/bell.svg";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
 import BackButton from "./backbutton";
 import { useSelector } from "react-redux";
 
@@ -46,12 +46,7 @@ const Header = (props) => {
         />
       </Link>
       <div class="flex ml-auto items-center">
-        <h2 class="text-xl font-medium antialiased">
-          {/* {this.props.user.companyName.length > 0
-              ? this.props.user.companyName
-              : "Enter your store name"} */}
-          {userData.name}
-        </h2>
+        <h2 class="text-xl font-medium antialiased">{userData.name}</h2>
         {/* bell icon */}
         <Link to="/">
           {" "}
@@ -72,14 +67,5 @@ const Header = (props) => {
     </div>
   );
 };
-
-// const mapToState = (state) => {
-//   console.log("debut");
-//   console.log(state.auth.user.user);
-//   console.log("fin");
-//   return {
-//     user: state.auth.user.user,
-//   };
-// };
 
 export default Header;

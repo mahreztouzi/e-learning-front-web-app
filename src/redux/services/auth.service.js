@@ -18,65 +18,62 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-class AuthService {
-  async login(data) {
+export async function Login(data) {
+  try {
+    // Tentative d'authentification en tant qu'enseignant
+    const enseignantResponse = await api.post(
+      `${BASE_API_URL}/enseignant`,
+      data
+    );
+    console.log(data);
+    console.log("login as enseignant");
+    console.log(enseignantResponse);
+    return enseignantResponse.data;
+  } catch (enseignantError) {
     try {
-      // Tentative d'authentification en tant qu'enseignant
-      const enseignantResponse = await api.post(
-        `${BASE_API_URL}/enseignant`,
+      // Tentative d'authentification en tant qu'apprenant
+      const apprenantResponse = await api.post(
+        `${BASE_API_URL}/apprenant`,
         data
       );
       console.log(data);
-      console.log("login as enseignant");
-      console.log(enseignantResponse);
-      return enseignantResponse.data;
-    } catch (enseignantError) {
-      try {
-        // Tentative d'authentification en tant qu'apprenant
-        const apprenantResponse = await api.post(
-          `${BASE_API_URL}/apprenant`,
-          data
-        );
-        console.log(data);
-        console.log("login as apprenant");
-        console.log(apprenantResponse);
-        return apprenantResponse.data;
-      } catch (apprenantError) {
-        console.log(apprenantError);
-        throw apprenantError;
-      }
-    }
-  }
-  async signup(data) {
-    console.log("data", data.email);
-    try {
-      const response = await api.post(
-        `${BASE_API_URL}/enseignant/${data.email}`,
-        data
-      );
-
-      console.log("signup");
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
-  async signupStudent(data) {
-    try {
-      const response = await api.post(
-        `${BASE_API_URL}/apprenant/${data.email}`,
-        data
-      );
-      console.log(data);
-      console.log("signup");
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      throw error;
+      console.log("login as apprenant");
+      console.log(apprenantResponse);
+      return apprenantResponse.data;
+    } catch (apprenantError) {
+      console.log(apprenantError);
+      throw apprenantError;
     }
   }
 }
-export default AuthService;
+export async function Signup(data) {
+  console.log("data", data.email);
+  try {
+    const response = await api.post(
+      `${BASE_API_URL}/enseignant/${data.email}`,
+      data
+    );
+
+    console.log("signup");
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function SignupStudent(data) {
+  try {
+    const response = await api.post(
+      `${BASE_API_URL}/apprenant/${data.email}`,
+      data
+    );
+    console.log(data);
+    console.log("signup");
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

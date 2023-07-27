@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { AuthActions } from "../../redux/actions";
 import Loader from "../loader";
 import "../../index.css";
@@ -14,8 +14,7 @@ const UserInfo = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [tnc, setTnc] = useState(false);
+
   const [hidePassword, setHidePassword] = useState(true);
 
   const handleClickShowPassword = () => {
@@ -31,15 +30,7 @@ const UserInfo = () => {
       setPassword(value);
     } else if (name === "name") {
       setName(value);
-      // } else if (name === "location") {
-      //   setLocation(value);
-      // }
-      // this.validationErrorMessage(event);
     }
-  };
-
-  const handleChange = (event) => {
-    setTnc(!tnc);
   };
 
   const submitForm = async (event) => {

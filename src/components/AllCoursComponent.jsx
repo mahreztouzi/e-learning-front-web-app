@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const AllCoursComponent = () => {
   const dispatch = useDispatch();
   const cours = useSelector((state) => state.cours.allCours);
-  const userData = useSelector((state) => state.auth.user.user);
   const isLoading = useSelector((state) => state.cours.isLoading);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCours, setFilteredCours] = useState([]);
@@ -106,12 +105,6 @@ const AllCoursComponent = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {/* <a
-                            href={`http://localhost:8080/uploads/${namePdf}`}
-                            className="text-indigo-600 hover:text-indigo-900 rounded-lg border py-3 px-8"
-                          >
-                            Consulter
-                          </a> */}
                           <Link
                             to={`/coursDetails/${id}`}
                             className="text-white bg-primary hover:text-indigo-900 hover:bg-white rounded-lg border py-2 px-6"

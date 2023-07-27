@@ -1,16 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   getCoursDetailsRequest,
-//   addCommentRequest,
-// } from "../redux/actions/cours.action";
+
 import { useParams } from "react-router-dom";
 import Loader from "./loader";
 import {
   addCommentRequest,
   getCommentsRequest,
 } from "../redux/actions/comment.action";
-import { isEmpty } from "../utils/utils";
 
 const CoursDetailsComponent = () => {
   const { id } = useParams();

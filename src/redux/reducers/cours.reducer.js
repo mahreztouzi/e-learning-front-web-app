@@ -34,21 +34,7 @@ const coursReducer = (state = initialState, action) => {
         ...state,
         allCours: action.payload.cours,
       };
-    // Ajoutez d'autres cas de commutation pour gérer les autres actions relatives aux cours
-    // la recuperation des cours
-    // case GET_COURS_REQUEST:
-    //   return {
-    //     ...state,
-    //     isLoading: true,
-    //     error: null,
-    //   };
-    // case GET_COURS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     coursSpecial: action.payload,
-    //     isLoading: false,
-    //     error: null,
-    //   };
+
     case GET_COURS_FAILURE:
       return {
         ...state,
@@ -78,7 +64,7 @@ const coursReducer = (state = initialState, action) => {
     case DELETE_COURS_SUCCESS:
       // Supprimez le cours de l'état en filtrant les cours existants
       const updatedCours = state.allCours.filter(
-        (cours) => cours.id != action.payload
+        (cours) => cours.id !== action.payload
       );
 
       return {

@@ -1,9 +1,7 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createLogger } from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
-// import { routerMiddleware } from "react-router-redux";
-import history from "./history";
 
 const masterConfig = (rootReducer, rootSaga) => {
   const middlewares = [];

@@ -1,11 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import {
   CREATE_MESSAGE_REQUEST,
-  CREATE_MESSAGE_SUCCESS,
-  CREATE_MESSAGE_FAILURE,
   GET_MESSAGES_REQUEST,
-  GET_MESSAGES_SUCCESS,
-  GET_MESSAGES_FAILURE,
 } from "../types/messages.types";
 import { createMessage, getMessages } from "../services/messages.service";
 import {

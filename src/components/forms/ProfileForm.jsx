@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { AuthActions } from "../../redux/actions";
-import Loader from "../loader";
-import { CheckIcon, LogoutIcon } from "../../icons/index";
+import { LogoutIcon } from "../../icons/index";
 import Popup from "reactjs-popup";
 import "../../index.css";
-// import "reactjs-popup/dist/index.css";
+import { useDispatch, useSelector } from "react-redux";
 
-const UserInfo = ({ isLoading, user, logout }) => {
-  return isLoading ? (
-    <div className="h-screen flex justify-center items-center">
-      {" "}
-      <Loader size="50" />{" "}
-    </div>
-  ) : (
+const UserInfo = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    // Dispatch l'action de déconnexion
+    dispatch(AuthActions.logout());
+  };
+  return (
     <div className="bg-gray-50 flex ">
       <div className=" bg-white p-5 border-2 rounded-xl mx-auto mt-20 mb-10 lg:w-1/2 md:w-3/5 sm:w-4/5">
         <div>
@@ -22,243 +22,6 @@ const UserInfo = ({ isLoading, user, logout }) => {
           </h1>
         </div>
         <div class="flex items-stretch space-x-12">
-          <div class="flex-column justify-center items-stretch flex-1">
-            {/* <img
-                src={
-                  this.props.user.picture
-                    ? this.props.user.picture
-                    : profilephotos.male1
-                }
-                alt="my profile pic"
-                class="rounded-lg object-scale-down"
-              /> */}
-            <form>
-              {/* Male */}
-              <h4 className="-mb-2 mt-3">Male</h4>
-              <div className="my-2 flex flex-wrap">
-                <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  {/* <div
-                    className={
-                      (this.state.selectedOption === profilephotos.male1
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div> */}
-                  {/* <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={this.state.selectedOption === profilephotos.male1}
-                    value={profilephotos.male1}
-                  />
-                  <img
-                    src={profilephotos.male1}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label>
-                <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.male2
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div> */}
-                  {/* <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                  
-                    checked={this.state.selectedOption === profilephotos.male2}
-                    value={profilephotos.male2}
-                  /> */}
-                  {/* <img
-                    src={profilephotos.male2}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  /> */}
-                </label>
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.male3
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={this.state.selectedOption === profilephotos.male3}
-                    value={profilephotos.male3}
-                  />
-                  <img
-                    src={profilephotos.male3}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.male4
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={this.state.selectedOption === profilephotos.male4}
-                    value={profilephotos.male4}
-                  />
-                  <img
-                    src={profilephotos.male4}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-              </div>
-              {/* Female */}
-              <h4 className="-mb-2 mt-3">Female</h4>
-              <div className="my-2 flex flex-wrap">
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.female1
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={
-                      this.state.selectedOption === profilephotos.female1
-                    }
-                    value={profilephotos.female1}
-                  />
-                  <img
-                    src={profilephotos.female1}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.female2
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={
-                      this.state.selectedOption === profilephotos.female2
-                    }
-                    value={profilephotos.female2}
-                  />
-                  <img
-                    src={profilephotos.female2}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.female3
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={
-                      this.state.selectedOption === profilephotos.female3
-                    }
-                    value={profilephotos.female3}
-                  />
-                  <img
-                    src={profilephotos.female3}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-                {/* <label className="h-16 w-16 m-1 rounded-lg relative cursor-pointer">
-                  <div
-                    className={
-                      (this.state.selectedOption === profilephotos.female4
-                        ? "block "
-                        : "hidden ") +
-                      "rounded-lg top-0 w-full h-full bg-gray-700 bg-opacity-60 absolute z-10 flex items-center justify-center"
-                    }
-                  >
-                    <CheckIcon stroke="white" className="h-8 w-8"></CheckIcon>
-                  </div>
-                  <input
-                    type="radio"
-                    id="image1"
-                    className="top-0 w-full h-full absolute z-0 focus:outline-none appearance-none opacity-0"
-                    onChange={this.onValueChange}
-                    checked={
-                      this.state.selectedOption === profilephotos.female4
-                    }
-                    value={profilephotos.female4}
-                  />
-                  <img
-                    src={profilephotos.female4}
-                    alt="my profile pic"
-                    class="rounded-lg object-scale-down absolute z-0 top-0"
-                    loading="lazy"
-                  />
-                </label> */}
-              </div>
-            </form>
-          </div>
           {/* main form */}
           <form className="flex-1 min-w-min">
             <div>
@@ -316,24 +79,7 @@ const UserInfo = ({ isLoading, user, logout }) => {
                 id="location"
               />
             </div>
-            {/* <div>
-              <label
-                htmlFor="Max_Limit_of_Inventory"
-                className="text-sm font-medium"
-              >
-                Max Limit of Inventory
-              </label>
-              <input
-                value={0}
-                name="maxLimit"
-                // onChange={(e) => inputChange(e)}
-                type="number"
-                className={`w-full p-2 text-primary border rounded outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                id="Max_Limit_of_Inventory"
-                // placeholder={dmaxLimit ? dmaxLimit : 0}
-              />
-            </div> */}
-            {/* save changes button */}
+
             <button
               // onClick={submitForm}
               type="submit"
@@ -375,7 +121,7 @@ const UserInfo = ({ isLoading, user, logout }) => {
                   Annuler
                 </button>
                 <button
-                  onClick={logout}
+                  onClick={handleLogout}
                   className={`w-full transition-all duration-300 cursor-pointer bg-red-500 py-2 px-4 text-sm text-white rounded-lg border hover:bg-red-700 hover:text-white`}
                 >
                   Deconnexion
@@ -384,27 +130,9 @@ const UserInfo = ({ isLoading, user, logout }) => {
             </div>
           )}
         </Popup>
-        {/* <Link to="/">
-          </Link> */}
       </div>
     </div>
   );
 };
 
-const mapToState = (state) => {
-  return {
-    error: state.auth.errorMessage,
-    isLoading: state.auth.isLoading,
-    isLoggedIn: state.auth.isLoggedIn,
-    user: state.auth.user.user,
-    token: state.auth.user.token,
-  };
-};
-
-const mapToStateDispatch = (dispatch) => {
-  return {
-    logout: () => dispatch(AuthActions.logout()),
-  };
-};
-
-export default connect(mapToState, mapToStateDispatch)(UserInfo);
+export default UserInfo;

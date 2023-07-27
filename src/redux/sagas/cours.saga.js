@@ -3,14 +3,12 @@ import {
   ADD_COURS_REQUEST,
   GET_COURS_FAILURE,
   GET_ALL_COURS_REQUEST,
-  GET_ALL_COURS_SUCCESS,
   DELETE_COURS_SUCCESS,
   DELETE_COURS_REQUEST,
   UPDATE_COURS_REQUEST,
 } from "../types/cours.types";
 import {
   addCours,
-  getCours,
   getAllCours,
   deleteCours,
   updateCours,
